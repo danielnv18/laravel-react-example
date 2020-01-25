@@ -13,8 +13,8 @@ class StoresTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Store::class, 30)->create()->each(function ($store) {
-//            $store->articles()->save(factory(Article::class, 50)->make());
+        factory(Store::class, 10)->create()->each(function ($store) {
+            $store->articles()->save(factory(Article::class)->make());
         });
     }
 }
