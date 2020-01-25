@@ -54,11 +54,14 @@ class StoreController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Store  $store
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Store $store)
     {
-        return new Response($store);
+        return view('stores.show', [
+            'store' => $store,
+            'articles' => []
+        ]);
     }
 
     /**
