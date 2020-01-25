@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::resource('admin/stores', 'StoreController');
+Route::resource('stores.articles', 'ArticleController');

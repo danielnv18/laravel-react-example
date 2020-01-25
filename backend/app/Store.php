@@ -15,4 +15,12 @@ class Store extends Model
      * @var array
      */
     protected $fillable = ['name', 'address'];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }

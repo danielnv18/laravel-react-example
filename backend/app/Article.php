@@ -9,8 +9,13 @@ class Article extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
+    protected $guarded = [];
+
     public function store()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(Store::class);
     }
 }

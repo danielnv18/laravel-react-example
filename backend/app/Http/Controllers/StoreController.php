@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Store;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class StoreController extends Controller
 {
@@ -35,15 +34,14 @@ class StoreController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'address' => 'required'
-        ]);
+        $data = $this->validate($request, $this->validateRules());
 
         Store::create($data);
 
@@ -60,7 +58,7 @@ class StoreController extends Controller
     {
         return view('stores.show', [
             'store' => $store,
-            'articles' => []
+            'articles' => $store->articles()->get()
         ]);
     }
 
@@ -80,21 +78,16 @@ class StoreController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Store  $store
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Store $store
+     *
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Store $store)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'address' => 'required'
-        ]);
-
-        $store->name = $data['name'];
-        $store->address = $data['address'];
-
-        $store->save();
+        $data = $this->validate($request, $this->validateRules());
+        $store->update($data);
 
         return redirect()->route('stores.index');
     }
@@ -109,8 +102,20 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-
         $store->delete();
         return redirect()->route('stores.index');
+    }
+
+    /**
+     * Validation rules
+     *
+     * @return array
+     */
+    private function validateRules()
+    {
+        return [
+            'name' => 'required',
+            'address' => 'required'
+        ];
     }
 }
