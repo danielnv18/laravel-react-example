@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('store.index');
 });
+
+Route::resource('admin/stores', 'StoreController');
