@@ -24,5 +24,6 @@
         @endforeach
         </tbody>
     </table>
+    {{ $stores->links() }}
 
 @endsection

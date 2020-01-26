@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Store;
-use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
