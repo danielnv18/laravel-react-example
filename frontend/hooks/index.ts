@@ -16,6 +16,17 @@ export const useApiArticles = (): Article[] | null => {
 
   return articles;
 };
+
+export const useApiArticlesByStore = (id: number): Article[] | null => {
+  const [articles, setArticles] = useState<Article[] | null>([]);
+
+  useEffect(() => {
+    fetchData(`/services/articles/stores/${id}`, 'articles', setArticles);
+  }, []);
+
+  return articles;
+};
+
 export const useApiStores = () => {
   const [stores, setStores] = useState<Store[] | null>([]);
 

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useApiStores } from '../hooks';
 import StoreComponent from '../components/store';
 
-const Home = () => {
+const StoresPage = () => {
   const stores = useApiStores();
   return (
     <div>
@@ -23,4 +23,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default StoresPage;

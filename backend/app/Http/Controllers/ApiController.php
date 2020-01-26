@@ -30,7 +30,11 @@ class ApiController extends Controller
 
     public function getArticlesByStore(Store $store)
     {
-        return $store->articles()->get();
+        return [
+            'articles' => $store->articles()->get(),
+            'success' => TRUE,
+            'total_elements' => 2
+        ];
     }
 
 
