@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use App\Store;
+use Illuminate\Http\Response;
 
 class ApiController extends Controller
 {
+
     public function getStores()
     {
         $stores = Store::all();
-        return [
+        return new Response([
             'stores' => $stores,
             'success' => TRUE,
-            'total_elements' => 2
-        ];
+            'total_elements' => $stores->count()
+        ]);
     }
 
     public function getArticles()
@@ -23,17 +25,37 @@ class ApiController extends Controller
         return [
             'articles' => $articles,
             'success' => TRUE,
-            'total_elements' => 2
+            'total_elements' => $articles->count()
         ];
     }
 
-    public function getArticlesByStore(Store $store)
+    public function getArticlesByStore($store_id)
     {
-        return [
-            'articles' => $store->articles()->get(),
+        try {
+            $store = Store::findOrFail($store_id);
+        } catch (\Exception $exception) {
+            return new Response([
+                'error_code' => 400,
+                'success' => FALSE,
+                'error_msg' => 'Bad request'
+            ], 400);
+        }
+
+        if ($store::count() == 0) {
+            return new Response([
+                'error_code' => 404,
+                'success' => FALSE,
+                'error_msg' => 'Record not found'
+            ], 404);
+        }
+
+        $articles = $store->articles()->getRelated();
+        return new Response([
+            'articles' => $articles::all(),
             'success' => TRUE,
-            'total_elements' => 2
-        ];
+            'total_elements' => $articles->count()
+        ]);
+
     }
 
 
