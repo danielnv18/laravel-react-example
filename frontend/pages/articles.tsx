@@ -1,33 +1,24 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
+import React, { FunctionComponent } from 'react';
 import Head from 'next/head';
-import { Article } from '../interfaces';
-import client from '../http/client';
+import ArticleComponent from '../components/article';
+import { useApiArticles } from '../hooks';
 
 const ArticlesPage: FunctionComponent<{}> = () => {
-  const [articles, setArticles] = useState<Article[] | null>([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await client('/services/articles');
-      res.json().then(res => setArticles(res.articles));
-    }
-
-    fetchData();
-  });
+  const articles = useApiArticles();
 
   return (
     <div>
       <Head>
-        <title>Home</title>
+        <title>Articles</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       Articles
       {articles ? (
-        <ul>
+        <>
           {articles.map(article => (
-            <li key={article.id}>{article.name}</li>
+            <ArticleComponent {...article} key={article.id} />
           ))}
-        </ul>
+        </>
       ) : null}
     </div>
   );

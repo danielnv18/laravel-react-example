@@ -1,17 +1,7 @@
 import React, { FunctionComponent } from 'react';
-import { Article} from '../../interfaces'
-// export type ArticleProps = {
-//   id: number;
-//   name: string;
-//   description: string;
-//   price: number;
-//   total_in_shelf: number;
-//   total_in_vault: number;
-//   created_at: Date;
-//   updated_at: Date;
-// };
+import { Article as ArticleProps } from '../../interfaces';
 
-const Article: FunctionComponent<Article> = props => {
+const Article: FunctionComponent<ArticleProps> = props => {
   return (
     <article>
       id: {props.id} <br />

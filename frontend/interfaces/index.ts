@@ -1,4 +1,8 @@
-export interface Store {}
+export interface Store {
+  id: number;
+  name: string;
+  address: string;
+}
 
 export interface Article {
   id: number;
@@ -9,4 +13,5 @@ export interface Article {
   total_in_vault: number;
   created_at: Date;
   updated_at: Date;
+  store_id: number;
 }
