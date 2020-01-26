@@ -1,0 +1,6 @@
+name: gap
+recipe: laravel
+config:
+  php: '7.3'
+  xdebug: true
+  webroot: public
