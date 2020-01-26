@@ -17,7 +17,7 @@ export const useApiArticles = (): Article[] | null => {
   return articles;
 };
 
-export const useApiArticlesByStore = (id: number): Article[] | null => {
+export const useApiArticlesByStore = (id: string): Article[] | null => {
   const [articles, setArticles] = useState<Article[] | null>([]);
 
   useEffect(() => {

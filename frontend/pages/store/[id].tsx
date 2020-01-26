@@ -7,9 +7,7 @@ import { isArray } from 'lodash';
 
 const StorePage = () => {
   const router = useRouter();
-  const id = !isArray(router.query.id)
-    ? parseInt(router.query.id)
-    : parseInt(router.query.id[0]);
+  const id = !isArray(router.query.id) ? router.query.id : router.query.id[0];
   const articles = useApiArticlesByStore(id);
   return (
     <div>
