@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a class="btn btn-primary" href="{{ route('stores.create') }}" role="button">Create store</a>
+    <h1>Stores</h1>
     <table class="table">
         <thead>
         <tr>

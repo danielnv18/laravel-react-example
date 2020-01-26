@@ -12,9 +12,9 @@ class StoreController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $stores = Store::paginate(5);
+        $stores = Store::paginate(8);
 
         return view('stores.index', [
             'stores' => $stores
@@ -56,9 +56,10 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
+        $articles = $store->articles()->getRelated();
         return view('stores.show', [
             'store' => $store,
-            'articles' => $store->articles()->get()
+            'articles' => $articles::paginate(3)
         ]);
     }
 

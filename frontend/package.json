@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@material-ui/core": "^4.9.0",
+    "clsx": "^1.0.4",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.15",
     "next": "9.2.1",
