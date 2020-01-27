@@ -1,4 +1,4 @@
-export function desc(a, b, orderBy) {
+export function desc<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
     return -1;
   }

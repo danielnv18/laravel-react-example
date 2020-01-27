@@ -4,15 +4,28 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import AddIcon from '@material-ui/icons/Add';
+import Link from 'next/link';
 
 export const mainListItems = (
   <div>
-    <ListItem button>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary="Stores" />
-    </ListItem>
+    <Link href="/">
+      <ListItem button component="a">
+        <ListItemIcon>
+          <DashboardIcon />
+        </ListItemIcon>
+        <ListItemText primary="Stores" />
+      </ListItem>
+    </Link>
+    <Link href="/create-store">
+      <ListItem button component="a">
+        <ListItemIcon>
+          <AddIcon />
+        </ListItemIcon>
+        <ListItemText primary="Create Store" />
+      </ListItem>
+    </Link>
+
     <ListItem button>
       <ListItemIcon>
         <ShoppingCartIcon />

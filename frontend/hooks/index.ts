@@ -36,3 +36,27 @@ export const useApiStores = () => {
 
   return stores;
 };
+
+export const createStore = async body => {
+  try {
+    const res = await client('/services/stores/', {
+      method: 'POST',
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const updateStore = async body => {
+  try {
+    const res = await client('/services/stores/', {
+      method: 'PUT',
+      body: JSON.stringify(body),
+    });
+    return await res.json();
+  } catch (e) {
+    console.error(e);
+  }
+};

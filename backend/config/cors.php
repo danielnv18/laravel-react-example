@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'paths' => ['api/*'],
+    'paths' => ['*'],
 
     /*
     * Matches the request method. `[*]` allows all methods.
