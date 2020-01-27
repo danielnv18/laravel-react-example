@@ -9,7 +9,3 @@ export default function Title(props) {
     </Typography>
   );
 }
-
-Title.propTypes = {
-  children: PropTypes.node,
-};

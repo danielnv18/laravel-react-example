@@ -25,4 +25,3 @@ const ArticlesPage: FunctionComponent<{}> = () => {
 };
 
 export default ArticlesPage;
-//<ul>{articles.map(article => <li key={article.id}>{article.name</li>)</ul>

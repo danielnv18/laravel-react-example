@@ -143,7 +143,7 @@ export default function EnhancedTable({ rows, headCells }) {
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={row.id}
                     selected={isItemSelected}
                   >
                     <TableCell
@@ -167,7 +167,7 @@ export default function EnhancedTable({ rows, headCells }) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[5, 10, 25]}
+        rowsPerPageOptions={[5, 10]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
