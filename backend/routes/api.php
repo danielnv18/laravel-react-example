@@ -16,12 +16,12 @@ use Illuminate\Http\Request;
 Route::get('services/stores', 'Api\StoreApiController@index');
 Route::post('services/stores', 'Api\StoreApiController@store');
 Route::get('services/stores/{store}', 'Api\StoreApiController@show');
-Route::put('services/stores/{store}', 'Api\StoreApiController@store');
-Route::delete('services/stores/{store}', 'Api\StoreApiController@delete');
+Route::put('services/stores/{store}', 'Api\StoreApiController@update');
+Route::delete('services/stores/{store}', 'Api\StoreApiController@destroy');
 
 Route::get('services/articles', 'Api\ArticleApiController@index');
 Route::post('services/articles', 'Api\ArticleApiController@store');
 Route::get('services/articles/{articles}', 'Api\ArticleApiController@show');
-Route::put('services/articles/{articles}', 'Api\ArticleApiController@store');
-Route::delete('services/articles/{articles}', 'Api\ArticleApiController@delete');
+Route::put('services/articles/{articles}', 'Api\ArticleApiController@update');
+Route::delete('services/articles/{articles}', 'Api\ArticleApiController@destroy');
 Route::get('services/articles/stores/{store}', 'ApiController@getArticlesByStore');

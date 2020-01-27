@@ -130,14 +130,6 @@ class ArticleApiController extends Controller
             return new Response([
                 'error_code' => 400,
                 'success' => FALSE,
-                'error_msg' => 'Bad request'
-            ], 400);
-        }
-
-        if ($store::count() == 0) {
-            return new Response([
-                'error_code' => 404,
-                'success' => FALSE,
                 'error_msg' => 'Record not found'
             ], 404);
         }
@@ -163,7 +155,8 @@ class ArticleApiController extends Controller
             'description' => 'required',
             'price' => 'required',
             'total_in_shelf' => 'required',
-            'total_in_vault' => 'required'
+            'total_in_vault' => 'required',
+            'store_id' => 'required',
         ];
     }
 
