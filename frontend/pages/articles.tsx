@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import Head from 'next/head';
-import ArticleComponent from '../components/article';
+import ArticleComponent from '../components/Article';
 import { useApiArticles } from '../hooks';
 
 const ArticlesPage: FunctionComponent<{}> = () => {

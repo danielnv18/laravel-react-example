@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useApiArticlesByStore } from '../../hooks';
-import ArticleComponent from '../../components/article';
+import ArticleComponent from '../../components/Article';
 import { isArray } from 'lodash';
 
 const StorePage = () => {
