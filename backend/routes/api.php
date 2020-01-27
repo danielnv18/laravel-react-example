@@ -19,4 +19,4 @@ Route::get('/services/articles', 'ApiController@getArticles');
 
 Route::get('/services/articles/stores/{store}', 'ApiController@getArticlesByStore');
 
-//Route::resource('/stores', 'StoreApiController');
+Route::resource('/stores', 'StoreApiController');

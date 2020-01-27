@@ -1,14 +1,6 @@
 import React from 'react';
-import Head from 'next/head';
+import Dashboard from '../components/Dashboard';
 
-const Home = () => (
-  <div>
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    hello
-  </div>
-);
+const Home = () => <Dashboard>Hello</Dashboard>;
 
 export default Home;
