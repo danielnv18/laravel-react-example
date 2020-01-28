@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
 import { useApiStores } from '../hooks';
 import Dashboard from '../components/Dashboard';
-import Title from '../components/Title';
 import DataTable from '../components/Tables';
 
 const useStyles = makeStyles(theme => ({

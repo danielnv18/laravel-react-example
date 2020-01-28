@@ -7,12 +7,12 @@ async function fetchData(url: string, key: string, setCallback: Function) {
   return res.json().then(res => setCallback(res[key]));
 }
 
-export const useApiArticles = (): Article[] | null => {
+export const useApiArticles = (refech): Article[] | null => {
   const [articles, setArticles] = useState<Article[] | null>([]);
 
   useEffect(() => {
     fetchData('/services/articles', 'articles', setArticles);
-  }, []);
+  }, [refech]);
 
   return articles;
 };
@@ -59,4 +59,10 @@ export const updateStore = async body => {
   } catch (e) {
     console.error(e);
   }
+};
+
+export const deleteArticle = async id => {
+  return client(`/services/articles/${id}`, {
+    method: 'DELETE',
+  }).then(respose => respose.json());
 };
