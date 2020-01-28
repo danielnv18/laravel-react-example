@@ -9,7 +9,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { stableSort, getSorting } from '../misc/tables';
-import Article from './Article';
+import Article from './Articles';
 
 type Order = 'asc' | 'desc';
 
