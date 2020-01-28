@@ -3,7 +3,7 @@ import DataTable from '../components/Tables';
 import { Article } from '../interfaces';
 import Button from '@material-ui/core/Button';
 import Dialog from './Dialog';
-import { deleteArticle, updateArticle } from '../hooks';
+import { deleteArticle, updateArticle } from '../http/client';
 import { articleHeadCells } from '../misc/tables';
 import ArticleForm from './ArticleForm';
 
