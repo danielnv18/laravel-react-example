@@ -54,15 +54,10 @@ export const useApiStores = () => {
 };
 
 export const createStore = async body => {
-  try {
-    const res = await client('/services/stores/', {
-      method: 'POST',
-      body: JSON.stringify(body),
-    });
-    return await res.json();
-  } catch (e) {
-    console.error(e);
-  }
+  return client('/services/stores/', {
+    method: 'POST',
+    body: JSON.stringify(body),
+  }).then(response => response.json());
 };
 
 export const updateStore = async body => {

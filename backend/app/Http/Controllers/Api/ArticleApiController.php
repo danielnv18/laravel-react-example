@@ -124,8 +124,12 @@ class ArticleApiController extends Controller
 
     public function getArticlesByStore($id)
     {
+        if (!is_numeric($id)) {
+            return $this->getBadRequest();
+        }
+        
         try {
-            $store = Store::findOrFail($id);
+            $articles = Article::where('store_id', $id)->get();
         } catch (\Exception $exception) {
             return new Response([
                 'error_code' => 400,
@@ -134,9 +138,8 @@ class ArticleApiController extends Controller
             ], 404);
         }
 
-        $articles = $store->articles()->getRelated();
         return new Response([
-            'articles' => $articles::all(),
+            'articles' => $articles,
             'success' => TRUE,
             'total_elements' => $articles->count()
         ]);

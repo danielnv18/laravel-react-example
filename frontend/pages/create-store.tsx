@@ -5,6 +5,7 @@ import Dashboard from '../components/Dashboard';
 import Title from '../components/Title';
 import StoreForm from '../components/StoreForm';
 import { createStore } from '../hooks';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,12 +16,21 @@ const useStyles = makeStyles(theme => ({
 
 function CreateStorePage() {
   const classes = useStyles();
+  const router = useRouter();
 
   return (
     <Dashboard>
       <Paper className={classes.root}>
         <Title>Create Store</Title>
-        <StoreForm onSubmit={values => createStore(values)} />
+        <StoreForm
+          onSubmit={async values => {
+            const response = await createStore(values);
+            if (response.success) {
+              debugger;
+              router.push(`/stores/${response.store.id}`);
+            }
+          }}
+        />
       </Paper>
     </Dashboard>
   );

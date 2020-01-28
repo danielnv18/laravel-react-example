@@ -36,9 +36,7 @@ const StoreForm: FunctionComponent<FormProps> = props => {
       name: props.name ?? '',
       address: props.address ?? '',
     },
-    onSubmit: values => {
-      props.onSubmit(values);
-    },
+    onSubmit: values => props.onSubmit(values),
   });
 
   const classes = useStyles();
@@ -78,7 +76,7 @@ const StoreForm: FunctionComponent<FormProps> = props => {
         color="primary"
         className={classes.submit}
       >
-        Sign In
+        Submit
       </Button>
     </form>
   );
