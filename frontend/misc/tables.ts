@@ -23,3 +23,48 @@ export function getSorting(order, orderBy) {
     ? (a, b) => desc(a, b, orderBy)
     : (a, b) => -desc(a, b, orderBy);
 }
+
+export const articleHeadCells = [
+  {
+    id: 'name',
+    numeric: false,
+    isSortable: true,
+    disablePadding: true,
+    label: 'Name',
+  },
+  {
+    id: 'description',
+    numeric: false,
+    isSortable: true,
+    disablePadding: false,
+    label: 'Description',
+  },
+  {
+    id: 'price',
+    isSortable: true,
+    numeric: true,
+    disablePadding: false,
+    label: 'Price',
+  },
+  {
+    id: 'total_in_shelf',
+    numeric: true,
+    isSortable: true,
+    disablePadding: false,
+    label: 'Total in shelf',
+  },
+  {
+    id: 'total_in_vault',
+    numeric: true,
+    isSortable: true,
+    disablePadding: false,
+    label: 'Total in vault',
+  },
+  {
+    id: 'actions',
+    isSortable: false,
+    numeric: false,
+    disablePadding: false,
+    label: 'Actions',
+  },
+];

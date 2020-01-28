@@ -24,4 +24,4 @@ Route::post('services/articles', 'Api\ArticleApiController@store');
 Route::get('services/articles/{articles}', 'Api\ArticleApiController@show');
 Route::put('services/articles/{articles}', 'Api\ArticleApiController@update');
 Route::delete('services/articles/{articles}', 'Api\ArticleApiController@destroy');
-Route::get('services/articles/stores/{store}', 'ApiController@getArticlesByStore');
+Route::get('services/articles/stores/{store}', 'Api\ArticleApiController@getArticlesByStore');

@@ -119,7 +119,7 @@ export default function EnhancedTable({ rows, headCells, actions }) {
           <TableBody>
             {stableSort(rows, getSorting(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
+              .map(row => {
                 return (
                   <TableRow hover tabIndex={-1} key={row.id}>
                     {headCells.map(cell => {

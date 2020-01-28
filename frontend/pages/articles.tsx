@@ -12,7 +12,7 @@ import Dialog from '../components/Dialog';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { deleteArticle } from '../hooks';
-import { findIndex } from 'lodash';
+import { articleHeadCells } from '../misc/tables';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,51 +25,6 @@ const ArticlesPage: FunctionComponent<{}> = () => {
   const [lastRefech, setlastRefech] = useState(Date().toString());
   const articles = useApiArticles(lastRefech);
   const classes = useStyles();
-
-  const headCells = [
-    {
-      id: 'name',
-      numeric: false,
-      isSortable: true,
-      disablePadding: true,
-      label: 'Name',
-    },
-    {
-      id: 'description',
-      numeric: false,
-      isSortable: true,
-      disablePadding: false,
-      label: 'Description',
-    },
-    {
-      id: 'price',
-      isSortable: true,
-      numeric: true,
-      disablePadding: false,
-      label: 'Price',
-    },
-    {
-      id: 'total_in_shelf',
-      numeric: true,
-      isSortable: true,
-      disablePadding: false,
-      label: 'Total in shelf',
-    },
-    {
-      id: 'total_in_vault',
-      numeric: true,
-      isSortable: true,
-      disablePadding: false,
-      label: 'Total in vault',
-    },
-    {
-      id: 'actions',
-      isSortable: false,
-      numeric: false,
-      disablePadding: false,
-      label: 'Actions',
-    },
-  ];
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [modalContent, setModalContent] = useState({
@@ -188,9 +143,8 @@ const ArticlesPage: FunctionComponent<{}> = () => {
       {articles ? (
         <Paper className={classes.root}>
           <DataTable
-            headCells={headCells}
-            // actions={articles.map(article => getArticleActions(article))}
-            actions={(article) => getArticleActions(article)}
+            headCells={articleHeadCells}
+            actions={article => getArticleActions(article)}
             rows={articles}
           />
           <Dialog
