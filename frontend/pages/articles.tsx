@@ -32,7 +32,7 @@ const ArticlesPage: FunctionComponent<{}> = () => {
         <Paper className={classes.root}>
           <ArticlesComponent
             articles={articles}
-            setlastRefech={setlastRefech}
+            setlastRefech={() => setlastRefech(Date().toString())}
           />
         </Paper>
       ) : null}

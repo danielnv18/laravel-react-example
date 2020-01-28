@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import client from '../http/client';
 import { Article, Store } from '../interfaces';
-import { isUndefined } from 'lodash';
 async function fetchData(url: string, key: string, setCallback: Function) {
   const res = await client(url);
   return res.json().then(res => setCallback(res[key]));
@@ -62,6 +61,13 @@ export const createStore = async body => {
 
 export const updateStore = async (id, body) => {
   return client(`/services/stores/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+  }).then(response => response.json());
+};
+
+export const updateArticle = async (id, body) => {
+  return client(`/services/articles/${id}`, {
     method: 'PUT',
     body: JSON.stringify(body),
   }).then(response => response.json());
