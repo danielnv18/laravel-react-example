@@ -75,7 +75,6 @@ export default function EnhancedTable({ rows, headCells, actions }) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (event, property) => {
-    console.log(property);
     if (property == 'actions') {
       return;
     }

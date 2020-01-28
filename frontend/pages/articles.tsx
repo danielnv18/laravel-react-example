@@ -42,7 +42,6 @@ const ArticlesPage: FunctionComponent<{}> = () => {
   };
 
   const handleDeleteActionClick = (article: Article) => {
-    console.log(article);
     setModalContent({
       title: 'Delete article',
       content: `Are you sure you want to delete ${article.name}?`,
@@ -107,26 +106,12 @@ const ArticlesPage: FunctionComponent<{}> = () => {
         <Button
           aria-controls="simple-menu"
           aria-haspopup="true"
-          onClick={handleClick}
+          onClick={() => handleDeleteActionClick(article)}
           variant="contained"
           color="primary"
         >
-          Actions
+          Delete
         </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <MenuItem onClick={() => handleDeleteActionClick(article)}>
-            Delete
-          </MenuItem>
-          <MenuItem onClick={() => handleEditActionClick(article)}>
-            Edit
-          </MenuItem>
-        </Menu>
       </>
     );
   };
