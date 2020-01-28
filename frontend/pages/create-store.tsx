@@ -15,8 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 function CreateStorePage() {
   const classes = useStyles();
-  const [response, setResponse] = useState({});
-  
+
   return (
     <Dashboard>
       <Paper className={classes.root}>

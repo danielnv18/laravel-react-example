@@ -130,7 +130,7 @@ class ArticleApiController extends Controller
             return new Response([
                 'error_code' => 400,
                 'success' => FALSE,
-                'error_msg' => 'Record not found'
+                'error_msg' => $exception->getMessage()
             ], 404);
         }
 
@@ -160,11 +160,11 @@ class ArticleApiController extends Controller
         ];
     }
 
-    private function getBadRequest() {
+    private function getBadRequest($message = 'Bad request') {
         return new Response([
             'error_code' => 400,
             'success' => FALSE,
-            'error_msg' => 'Bad request'
+            'error_msg' => $message
         ], 400);
     }
 }

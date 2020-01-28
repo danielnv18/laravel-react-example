@@ -1,11 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import MuiLink from '@material-ui/core/Link';
 import { useApiStores } from '../hooks';
 import Dashboard from '../components/Dashboard';
 import Title from '../components/Title';
 import DataTable from '../components/Tables';
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(1),
@@ -28,8 +32,14 @@ function HomePage() {
 
   return (
     <Dashboard>
+      <Head>
+        <title>Stores | Super Zapatos</title>
+      </Head>
       <Paper className={classes.root}>
-        <Title>Stores</Title>
+        <Typography variant="h3" component="h2">
+          Stores
+        </Typography>
+
         {stores ? (
           <DataTable
             headCells={headCells}
@@ -39,7 +49,7 @@ function HomePage() {
                 ...{
                   name: (
                     <Link href={`/stores/${store.id}`}>
-                      <a>{store.name}</a>
+                      <MuiLink>{store.name}</MuiLink>
                     </Link>
                   ),
                 },

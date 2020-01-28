@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { stableSort, getSorting } from '../misc/tables';
 
+type Order = 'asc' | 'desc';
+
 export function EnhancedTableHead(props) {
   const { classes, order, orderBy, onRequestSort, headCells } = props;
   const createSortHandler = property => event => {
@@ -64,9 +66,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function EnhancedTable({ rows, headCells }) {
   const classes = useStyles();
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
+  const [order, setOrder] = React.useState<Order>('asc');
+  const [orderBy, setOrderBy] = React.useState('name');
+  const [selected, setSelected] = React.useState<string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -75,26 +77,6 @@ export default function EnhancedTable({ rows, headCells }) {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-  };
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
@@ -107,8 +89,6 @@ export default function EnhancedTable({ rows, headCells }) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   const emptyRows =
     rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
@@ -135,28 +115,21 @@ export default function EnhancedTable({ rows, headCells }) {
             {stableSort(rows, getSorting(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, index) => {
-                const isItemSelected = isSelected(row.name);
-                const labelId = `enhanced-table-checkbox-${index}`;
-
                 return (
-                  <TableRow
-                    hover
-                    onClick={event => handleClick(event, row.name)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={row.id}
-                    selected={isItemSelected}
-                  >
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
-                    >
-                      {row.name}
-                    </TableCell>
-                    <TableCell>{row.address}</TableCell>
+                  <TableRow hover tabIndex={-1} key={row.id}>
+                    {headCells.map(cell => {
+                      return (
+                        <TableCell
+                          component={cell.id === 'name' ? 'th' : 'td'}
+                          id={cell.id}
+                          key={cell.id}
+                          scope={cell.id === 'name' ? 'row' : null}
+                          padding={cell.id === 'name' ? 'none' : null}
+                        >
+                          {row[cell.id]}
+                        </TableCell>
+                      );
+                    })}
                   </TableRow>
                 );
               })}

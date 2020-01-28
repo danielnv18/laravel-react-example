@@ -26,11 +26,13 @@ export const mainListItems = (
       </ListItem>
     </Link>
 
-    <ListItem button>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Articles" />
-    </ListItem>
+    <Link href="/articles">
+      <ListItem button component="a">
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Articles" />
+      </ListItem>
+    </Link>
   </div>
 );
