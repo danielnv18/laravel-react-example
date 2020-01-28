@@ -42,6 +42,7 @@ function HomePage() {
         {stores ? (
           <DataTable
             headCells={headCells}
+            actions={null}
             rows={stores.map(store => {
               return {
                 ...store,

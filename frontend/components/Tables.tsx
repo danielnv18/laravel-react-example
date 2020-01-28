@@ -9,6 +9,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { stableSort, getSorting } from '../misc/tables';
+import Article from './Article';
 
 type Order = 'asc' | 'desc';
 
@@ -64,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function EnhancedTable({ rows, headCells }) {
+export default function EnhancedTable({ rows, headCells, actions }) {
   const classes = useStyles();
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState('name');
@@ -122,6 +123,9 @@ export default function EnhancedTable({ rows, headCells }) {
                 return (
                   <TableRow hover tabIndex={-1} key={row.id}>
                     {headCells.map(cell => {
+                      if (cell.id == 'actions') {
+                        return null;
+                      }
                       return (
                         <TableCell
                           component={cell.id === 'name' ? 'th' : 'td'}
@@ -134,6 +138,7 @@ export default function EnhancedTable({ rows, headCells }) {
                         </TableCell>
                       );
                     })}
+                    {actions ? <TableCell>{actions(row)}</TableCell> : null}
                   </TableRow>
                 );
               })}

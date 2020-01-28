@@ -86,7 +86,8 @@ const ArticlesPage: FunctionComponent<{}> = () => {
     setAnchorEl(null);
   };
 
-  const handleDeleteActionClick = (article: Article, action: string) => {
+  const handleDeleteActionClick = (article: Article) => {
+    console.log(article);
     setModalContent({
       title: 'Delete article',
       content: `Are you sure you want to delete ${article.name}?`,
@@ -105,7 +106,7 @@ const ArticlesPage: FunctionComponent<{}> = () => {
               const result = await deleteArticle(article.id).catch();
               if (result.success) {
                 setlastRefech(Date().toString());
-                setOpen(false)
+                setOpen(false);
               } else {
                 setModalContent({
                   title: 'Somehting went wrong',
@@ -135,7 +136,7 @@ const ArticlesPage: FunctionComponent<{}> = () => {
     setAnchorEl(null);
   };
 
-  const handleEditActionClick = (article: Article, action: string) => {
+  const handleEditActionClick = (article: Article) => {
     setModalContent({
       title: article.name,
       content: 'yaya',
@@ -164,10 +165,10 @@ const ArticlesPage: FunctionComponent<{}> = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={() => handleDeleteActionClick(article, 'delete')}>
+          <MenuItem onClick={() => handleDeleteActionClick(article)}>
             Delete
           </MenuItem>
-          <MenuItem onClick={() => handleEditActionClick(article, 'Edit')}>
+          <MenuItem onClick={() => handleEditActionClick(article)}>
             Edit
           </MenuItem>
         </Menu>
@@ -188,9 +189,9 @@ const ArticlesPage: FunctionComponent<{}> = () => {
         <Paper className={classes.root}>
           <DataTable
             headCells={headCells}
-            rows={articles.map(article => {
-              return { ...article, ...{ actions: getArticleActions(article) } };
-            })}
+            // actions={articles.map(article => getArticleActions(article))}
+            actions={(article) => getArticleActions(article)}
+            rows={articles}
           />
           <Dialog
             title={modalContent.title}

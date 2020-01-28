@@ -19,8 +19,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Article::class, function (Faker $faker) {
     return [
-        'name' => 'Store ' . $faker->name,
-        'description' => 'Description' . $faker->text(),
+        'name' => 'Article ' . $faker->title,
+        'description' => 'Description ' . $faker->text(),
         'price' => $faker->numberBetween(30, 100),
         'total_in_shelf' => $faker->numberBetween(1, 10),
         'total_in_vault' => $faker->numberBetween(1, 60),
