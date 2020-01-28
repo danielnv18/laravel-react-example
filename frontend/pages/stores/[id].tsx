@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useApiArticlesByStore, useApiStore } from '../../hooks';
-import { deleteArticle } from '../../http/client';
 import { isArray } from 'lodash';
 import Paper from '@material-ui/core/Paper';
 import Dashboard from '../../components/Dashboard';

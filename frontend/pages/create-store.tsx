@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Dashboard from '../components/Dashboard';
 import Title from '../components/Title';
 import StoreForm from '../components/StoreForm';
-import { createStore } from '../hooks';
+import { createStore } from '../http/client';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles(theme => ({
