@@ -43,12 +43,12 @@ export const useApiArticlesByStore = (
   return articles;
 };
 
-export const useApiStores = () => {
+export const useApiStores = (lastRefech: string) => {
   const [stores, setStores] = useState<Store[] | null>([]);
 
   useEffect(() => {
     fetchData('/services/stores', 'stores', setStores);
-  }, []);
+  }, [lastRefech]);
 
   return stores;
 };
@@ -60,20 +60,21 @@ export const createStore = async body => {
   }).then(response => response.json());
 };
 
-export const updateStore = async body => {
-  try {
-    const res = await client('/services/stores/', {
-      method: 'PUT',
-      body: JSON.stringify(body),
-    });
-    return await res.json();
-  } catch (e) {
-    console.error(e);
-  }
+export const updateStore = async (id, body) => {
+  return client(`/services/stores/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+  }).then(response => response.json());
 };
 
 export const deleteArticle = async id => {
   return client(`/services/articles/${id}`, {
+    method: 'DELETE',
+  }).then(respose => respose.json());
+};
+
+export const deleteStore = async id => {
+  return client(`/services/stores/${id}`, {
     method: 'DELETE',
   }).then(respose => respose.json());
 };

@@ -26,19 +26,10 @@ const ResponsiveDialog: FunctionComponent<ResponsiveDialogProps> = props => {
       aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">{props.title}</DialogTitle>
-      <DialogContent>
-        <DialogContentText>{props.content}</DialogContentText>
-      </DialogContent>
+      <DialogContent>{props.content}</DialogContent>
       {props.actions ? <DialogActions>{props.actions}</DialogActions> : null}
     </Dialog>
   );
 };
 
 export default ResponsiveDialog;
-
-/* <Button autoFocus onClick={handleClose} color="primary">
-          Disagree
-        </Button>
-        <Button onClick={handleClose} color="secondary" autoFocus>
-          Agree
-        </Button> */

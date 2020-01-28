@@ -9,8 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { Article } from '../interfaces';
 import Button from '@material-ui/core/Button';
 import Dialog from '../components/Dialog';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import { deleteArticle } from '../hooks';
 import { articleHeadCells } from '../misc/tables';
 
@@ -26,20 +24,12 @@ const ArticlesPage: FunctionComponent<{}> = () => {
   const articles = useApiArticles(lastRefech);
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [modalContent, setModalContent] = useState({
     title: '',
     content: '',
     actions: null,
   });
   const [open, setOpen] = useState(false);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
 
   const handleDeleteActionClick = (article: Article) => {
     setModalContent({
@@ -87,7 +77,6 @@ const ArticlesPage: FunctionComponent<{}> = () => {
       ),
     });
     setOpen(true);
-    setAnchorEl(null);
   };
 
   const handleEditActionClick = (article: Article) => {
@@ -97,7 +86,6 @@ const ArticlesPage: FunctionComponent<{}> = () => {
       actions: null,
     });
     setOpen(true);
-    setAnchorEl(null);
   };
 
   const getArticleActions = (article: Article) => {

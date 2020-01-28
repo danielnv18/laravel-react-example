@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Article;
 use App\Http\Controllers\Controller;
-use App\Store;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -127,7 +126,7 @@ class ArticleApiController extends Controller
         if (!is_numeric($id)) {
             return $this->getBadRequest();
         }
-        
+
         try {
             $articles = Article::where('store_id', $id)->get();
         } catch (\Exception $exception) {

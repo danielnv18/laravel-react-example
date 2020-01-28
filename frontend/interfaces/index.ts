@@ -1,6 +1,7 @@
 export interface Store {
   id: number;
   name: string;
+  label?: string;
   address: string;
 }
 

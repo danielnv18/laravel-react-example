@@ -26,7 +26,6 @@ function CreateStorePage() {
           onSubmit={async values => {
             const response = await createStore(values);
             if (response.success) {
-              debugger;
               router.push(`/stores/${response.store.id}`);
             }
           }}
